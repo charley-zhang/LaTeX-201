@@ -1,0 +1,30 @@
+\usepackage[utf8]{inputenc}  % input encoding utf-8
+\usepackage[T1]{fontenc}  % font encoding - T1
+
+\usepackage{fullpage}  % for narrower margins
+\usepackage{hyperref} % for urls 
+\usepackage{booktabs} % For \toprule, \midrule and \bottomrule
+\usepackage{siunitx} % Formats the units and values
+\usepackage{csvsimple}  % generates table from mixed csv
+\usepackage{pgfplotstable} % Generates table from numeric csv
+
+\usepackage{minted}  % for source code highlighting
+\setminted[python]
+{
+    frame=lines,  % sets the bounding box
+    autogobble,  % gobbles up white-space
+    framesep=2mm,  % frame seperation distance
+    linenos  % sets line numbers
+}
+% Setup siunitx:
+\sisetup{
+  round-mode          = places, % Rounds numbers
+  round-precision     = 2, % to 2 places
+}
+
+\pgfplotsset{compat=1.15}
+
+\usepackage{multirow}
+\usepackage{multicol}
+
+\usepackage{xcolor}

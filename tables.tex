@@ -1,0 +1,115 @@
+\documentclass{article}
+
+%% begin preamble
+
+\input{preamble.tex}  % include all the contents of preamble.tex
+
+\title{\LaTeX{} 201 \\ Tables}
+\author{Satyaki Sikdar}
+\date{\today}
+
+%% end preamble 
+
+\begin{document}
+
+\maketitle
+
+Some useful references \url{https://www.inf.ethz.ch/personal/markusp/teaching/guides/guide-tables.pdf} and \url{https://www.latex-tutorial.com/tutorials/tables/}.
+
+\section{The first table}
+
+\begin{table}[htb]
+    \centering
+    \caption{Notre Dame football results}
+    \vspace{0.1in}
+    \label{tab:table2}
+    \begin{tabular}{|r|l|l|r|}
+        \hline 
+        Week & Opponent & Home/Away & Score \\ 
+        \hline 
+        $1$ & Michigan & Home & $24-17$ \\ \hline
+        $2$ & Ball State & Home & $24-16$ \\ \hline 
+        $3$ & Vanderbilt & Home & $22-17$ \\ \hline
+        $4$ & Wake Forest & Away & $56-27$ \\ \hline 
+        $5$ & Stanford & Home & $38-17$ \\ \hline 
+        $6$ & Virginia Tech & Away & $45-23$ \\ \hline 
+    \end{tabular}
+\end{table}
+
+\newpage
+
+\section{A better table using {\tt booktabs}}
+
+\begin{table}[htb]
+    \centering
+    \caption{Notre Dame football results}
+    \vspace{0.1in}
+    \label{tab:table1}
+    \begin{tabular}{rllr}
+        \toprule
+        Week & Opponent & Home/Away & Score \\ 
+        \midrule  
+        $1$ & Michigan & Home & $24-17$ \\ 
+        $2$ & Ball State & Home & $24-16$ \\
+        $3$ & Vanderbilt & Home & $22-17$ \\
+        $4$ & Wake Forest & Away & $56-27$ \\
+        $5$ & Stanford & Home & $38-17$ \\ 
+        $6$ & Virginia Tech & Away & $45-23$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\newpage
+\section{{\tt csvsimple} example}
+
+\begin{table}[htb]
+    \centering
+    \caption{Pokemon information}
+    \label{tab:pokemon}
+    \vspace{0.1in}
+    \csvautobooktabular {./data/pokemon_small.csv}
+\end{table}
+\newpage
+
+\section{Complicated tables}
+
+\subsection{Using Pandas}
+{\tt df.to\_latex()} will generate \LaTeX{} code for a table
+
+\begin{minted}{python}
+import pandas as pd
+df = pd.read_csv('./pokemon_small.csv')
+print(df.to_latex(index=False, na_rep=''))
+\end{minted}
+
+
+
+\subsection{Using Excel2LaTeX}
+Excel macro to convert a spreadsheet to \LaTeX{} \url{https://ctan.org/pkg/excel2latex?lang=en} 
+
+\newpage
+\section{Using {\tt multirow} and {\tt multicol}}
+Table 6 from \url{https://link.springer.com/article/10.1007/s10115-018-1209-7}.
+
+\begin{table}[htb]
+\centering
+\caption{Performance of the state-of-the-art community detection algorithms on LFR generated synthetic benchmark datasets}
+\label{tab:lfr}
+\vspace{0.1in}
+
+\begin{tabular}{@{}lrrr@{}}
+	\toprule
+	\multirow{2}{*}{Method} & \multicolumn{3}{c}{$\mu$} \\ \cmidrule{2-4}
+	 & $0.1$ & $0.2$ &  $0.3$ \\
+	\midrule 
+    Ground truth & $0.648$ & $0.548$  &  $0.452$ \\  
+	Louvain &  $0.648$  &    $0.548$ &   $0.452$ \\  
+	 LexDFS &  $0.648$ &    $0.548$ &    $0.328$ \\  
+	Label Prop &  $0.648$ &    $0.548$  &    $0.230$ \\  
+	Infomap &  $0.648$ &     $0.548$ &    $0.452$ \\  
+    LINCOM &  $0.648$  &    $0.545$  &    $0.452$ \\  
+    CNM  & $0.648$ &     $0.548$ &    $0.452$ \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}
